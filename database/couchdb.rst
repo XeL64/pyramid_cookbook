@@ -84,8 +84,8 @@ In __init__.py::
         registry = event.app.registry
         db = registry.db.get_or_create_db(registry.settings['couchdb.db'])
 
-        pages_view_exists = db.doc_exist('lists/pages')
-        if pages_view_exists == False:
+        pages_view_exists = db.doc_exist('_design/lists')
+        if not pages_view_exists:
             design_doc = {
                 '_id': '_design/lists',
                 'language': 'javascript',
